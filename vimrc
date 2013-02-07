@@ -17,12 +17,12 @@ call pathogen#helptags()
 
 " General Settings
 
-set nocompatible	" not compatible with the old-fashion vi mode
-set bs=2		" allow backspacing over everything in insert mode
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set autoread		" auto read when file is changed from outside
-
+set nocompatible  " not compatible with the old-fashion vi mode
+set bs=2    " allow backspacing over everything in insert mode
+set history=50    " keep 50 lines of command line history
+set ruler   " show the cursor position all the time
+set autoread    " auto read when file is changed from outside
+set nu
 
 filetype off          " necessary to make ftdetect work on Linux
 syntax on
@@ -35,10 +35,9 @@ filetype plugin on    " Enable filetype-specific plugins
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
 
-syntax on		" syntax highlight
-set hlsearch		" search highlighting
+set hlsearch    " search highlighting
 
-if has("gui_running")	" GUI color and font settings
+if has("gui_running") " GUI color and font settings
   set guifont=Osaka-Mono:h20
   set background=dark 
   set t_Co=256          " 256 color mode
@@ -47,25 +46,25 @@ if has("gui_running")	" GUI color and font settings
   highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
 else
 " terminal color settings
-  colors vgod
+  color vgod
 endif
 
-set clipboard=unnamed	" yank to the system register (*) by default
-set showmatch		" Cursor shows matching ) and }
-set showmode		" Show current mode
-set wildchar=<TAB>	" start wild expansion in the command line using <TAB>
+set clipboard=unnamed " yank to the system register (*) by default
+set showmatch   " Cursor shows matching ) and }
+set showmode    " Show current mode
+set wildchar=<TAB>  " start wild expansion in the command line using <TAB>
 set wildmenu            " wild char completion menu
 
 " ignore these files while expanding wild chars
 set wildignore=*.o,*.class,*.pyc
 
-set autoindent		" auto indentation
-set incsearch		" incremental search
-set nobackup		" no *~ backup files
-set copyindent		" copy the previous indentation on autoindenting
-set ignorecase		" ignore case when searching
-set smartcase		" ignore case if search pattern is all lowercase,case-sensitive otherwise
-set smarttab		" insert tabs on the start of a line according to context
+set autoindent    " auto indentation
+set incsearch   " incremental search
+set nobackup    " no *~ backup files
+set copyindent    " copy the previous indentation on autoindenting
+set ignorecase    " ignore case when searching
+set smartcase   " ignore case if search pattern is all lowercase,case-sensitive otherwise
+set smarttab    " insert tabs on the start of a line according to context
 
 " disable sound on errors
 set noerrorbells
@@ -79,7 +78,7 @@ set tm=500
    set shiftwidth=3 
 
    au FileType Makefile set noexpandtab
-"}      							
+"}                    
 
 " status line {
 set laststatus=2
@@ -204,7 +203,7 @@ cmap cd. lcd %:p:h
 "--------------------------------------------------------------------------- 
 
 " Ctrl-[ jump out of the tag stack (undo Ctrl-])
-map <C-[> <ESC>:po<CR>
+map [[ :po<CR>
 
 " ,g generates the header guard
 map <leader>g :call IncludeGuard()<CR>
@@ -230,9 +229,9 @@ autocmd FileType java set omnifunc=javacomplete#Complete
 " use syntax complete if nothing else available
 if has("autocmd") && exists("+omnifunc")
   autocmd Filetype *
-              \	if &omnifunc == "" |
-              \		setlocal omnifunc=syntaxcomplete#Complete |
-              \	endif
+              \ if &omnifunc == "" |
+              \   setlocal omnifunc=syntaxcomplete#Complete |
+              \ endif
 endif
 
 set cot-=preview "disable doc preview in omnicomplete
@@ -250,20 +249,20 @@ set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
 
 fun! ViewUTF8()
-	set encoding=utf-8                                  
-	set termencoding=big5
+  set encoding=utf-8                                  
+  set termencoding=big5
 endfun
 
 fun! UTF8()
-	set encoding=utf-8                                  
-	set termencoding=big5
-	set fileencoding=utf-8
-	set fileencodings=ucs-bom,big5,utf-8,latin1
+  set encoding=utf-8                                  
+  set termencoding=big5
+  set fileencoding=utf-8
+  set fileencodings=ucs-bom,big5,utf-8,latin1
 endfun
 
 fun! Big5()
-	set encoding=big5
-	set fileencoding=big5
+  set encoding=big5
+  set fileencoding=big5
 endfun
 
 
@@ -288,7 +287,7 @@ let g:tex_flavor='latex'
 
 " --- AutoClose - Inserts matching bracket, paren, brace or quote 
 " fixed the arrow key problems caused by AutoClose
-if !has("gui_running")	
+if !has("gui_running")  
    set term=linux
    imap OA <ESC>ki
    imap OB <ESC>ji
@@ -325,7 +324,7 @@ nnoremap <silent> <F7> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
 " --- PowerLine
-" let g:Powerline_symbols = 'fancy' " require fontpatcher
+let g:Powerline_symbols = 'fancy' " require fontpatcher
 "
 
 " --- SnipMate
@@ -333,3 +332,12 @@ let g:snipMateAllowMatchingDot = 0
 
 " --- coffee-script
 au BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw! " recompile coffee scripts on write
+
+" swapfile
+set noswf
+set nowrap
+set showmatch
+set hlsearch
+set ignorecase
+set incsearch
+set smartcase
